@@ -1,6 +1,6 @@
 #Node
-/node_modules
-/screenshots
+node_modules
+screenshots
 
 # Visual Studio Code
 .vscode/*
