@@ -1,4 +1,4 @@
-'use strict';
+// This file will contain the bot connected with Discord
 
 'use strict';
 
