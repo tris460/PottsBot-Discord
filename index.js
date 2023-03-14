@@ -2,9 +2,9 @@
 
 'use strict';
 
-const UtaScrapper = require('./WebScraping/utaScraper');
-const { generateQR } = require('./WebScraping/generateQR');
-const { getFortune } = require('./WebScraping/fortune');
+const UtaScrapper = require('./Functions/utaScraper');
+const { generateQR } = require('./Functions/generateQR');
+const { getFortune } = require('./Functions/fortune');
 
 const urlToQR = 'https://www.youtube.com/watch?v=kF-wqxZPGwA'; // URL to convert to QR code
 const QRFileName = 'qr.jpg'; // Image's name for the QR
