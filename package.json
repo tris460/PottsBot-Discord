@@ -15,6 +15,7 @@
   "author": "Beatriz Martinez Perez",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^19.6.3"
+    "puppeteer": "^19.6.3",
+    "qrcode": "^1.5.1"
   }
 }
