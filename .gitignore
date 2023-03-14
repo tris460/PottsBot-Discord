@@ -1,4 +1,4 @@
-#Node
+# Node
 node_modules
 screenshots
 
@@ -7,3 +7,9 @@ screenshots
 
 # Env variables
 environments
+
+# Images
+*.jpg
+*.png
+*.gif
+*.jpeg

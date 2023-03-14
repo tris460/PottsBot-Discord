@@ -5,11 +5,14 @@
 const UtaScrapper = require('./WebScraping/utaScraper');
 const { generateQR } = require('./WebScraping/generateQR');
 
+const urlToQR = 'https://www.youtube.com/watch?v=kF-wqxZPGwA'; // URL to convert to QR code
+const QRFileName = 'qr.jpg'; // Image's name for the QR
+
 // Auto execute this function when the server is started
 (async () => {
   // Create the object to run the scraper
   // const utaScraper = new UtaScrapper('')
   // utaScraper.runScraping();
-  generateQR();
+  await generateQR(urlToQR, QRFileName);
 })();
  
