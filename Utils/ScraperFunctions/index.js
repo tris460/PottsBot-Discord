@@ -34,6 +34,32 @@ class Scraper {
   async takeScreenshot() {
     await this.page.screenshot({ path: 'screenshots/image.jpg' });
   }
+
+  /**
+   * This function stablish a pause before you can continue with your process, in order to charge the page completely
+   */
+  async waitForSelector(selector) {
+    await this.page.waitForSelector(selector);
+  }
+
+  /**
+   * This function clicks on a specific element, for example, a button.
+   * @param {string} selector HTML selector where you want to click
+   */
+  async click(selector) {
+    await this.page.click(selector);
+  }
+
+  /**
+   * This function fills an input with the text you choose.
+   * @param {string} id HTML selector where you want to put text
+   * @param {string} text Text you want to put in the HTML element
+   * @param {int} time How many time are we going to wait for the result (in milliseconds)
+   */
+  async fillInput(id, text, time) {
+    await this.page.waitForTimeout(time);
+    await this.page.type(id, text);
+  }
 }
 
 module.exports = Scraper;

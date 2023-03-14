@@ -4,7 +4,13 @@
 
 const puppeteer = require('puppeteer');
 const Scraper = require('../Utils/ScraperFunctions/index');
-const URL = 'https://www.utags.edu.mx/index.php/vinculacion/seguimiento-de-egresados/bolsa-de-trabajo-2';
+const URL = 'http://sito.utags.edu.mx/';
+const USER_INPUT_ID = '#xUsuario';
+const PASSWORD_INPUT_ID = '#xContrasena';
+const LOGIN_BUTTON_ID = '#btnSubmit';
+const PAGOS_BUTTON_ID = 'div.col-sm-6:nth-child(3)';
+const MENU_ID = '#Menu';
+const TIME_OUT = 15000;
 
 /**
  * This class contains all the steps to execute the scraper for the UTA page.
@@ -24,7 +30,8 @@ class UtaScrapper {
    */
   async newBrowser() {
     return await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      headless: false
     });
   }
 
@@ -37,6 +44,11 @@ class UtaScrapper {
     const myPage = new Scraper(browser);
 
     await myPage.openNewPage(URL);
+    await myPage.fillInput(USER_INPUT_ID, '190343', TIME_OUT);
+    await myPage.fillInput(PASSWORD_INPUT_ID, 'b1f17e5e',TIME_OUT);
+    await myPage.click(LOGIN_BUTTON_ID);
+    await myPage.waitForSelector(MENU_ID);
+    await myPage.click(PAGOS_BUTTON_ID);
     await myPage.takeScreenshot();
     await myPage.closeBrowser();
   }
