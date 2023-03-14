@@ -14,7 +14,10 @@ const QRFileName = 'qr.jpg'; // Image's name for the QR
   // Create the object to run the scraper
   // const utaScraper = new UtaScrapper('')
   // utaScraper.runScraping();
+
   // await generateQR(urlToQR, QRFileName);
-  getFortune('shellFortune')
+  
+  let fortune = getFortune('shellFortune');
+  console.log(fortune);
 })();
  
