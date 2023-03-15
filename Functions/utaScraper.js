@@ -18,7 +18,7 @@ const TIME_OUT = 15000;
 class UtaScrapper {
   /**
    * This constructor initializes the necessary variables for the scraper
-   * @param {Array[string][string]} flag Receives a bi dimensional array with the flag's name and its value
+   * @param { Array[string][string] } flag Receives a bi dimensional array with the flag's name and its value
    */
   constructor(flag = []) {
     this.flag = flag;

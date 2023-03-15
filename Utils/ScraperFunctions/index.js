@@ -61,9 +61,16 @@ class Scraper {
     await this.page.type(id, text);
   }
 
+  /**
+   * Function to generate a PDF of the current page.
+   * @param {JSON} options JSON object to set the configurations for your PDF
+   * Example: { path: 'name.pdf', format: 'A4', printBackground: true }
+   * Path: Name of your PDF file with extension '.pdf'
+   * Format: Size of page
+   * printBackground: Boolean value (true for print the styles of page)
+   */
   async getPDF(options) {
-    let pdf = await this.page.pdf(options);
-    return pdf;
+    await this.page.pdf(options);
   }
 }
 
