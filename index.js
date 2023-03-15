@@ -8,10 +8,10 @@ const Discord = require("discord.js")
 const { Client, Collection } = require('discord.js');
 const client = new Client({ intents: [3276799] })
 
-const UtaScrapper = require('./Functions/utaScraper');
-const websiteStatus = require('./Functions/websiteStatus');
-const { generateQR } = require('./Functions/generateQR');
-const { getFortune } = require('./Functions/fortune');
+const UtaScrapper = require('./commands/utaScraper');
+const websiteStatus = require('./commands/websiteStatus');
+const { generateQR } = require('./commands/generateQR');
+const { getFortune } = require('./commands/fortune');
 
 const urlToQR = 'https://www.youtube.com/watch?v=kF-wqxZPGwA'; // URL to convert to QR code
 const QRFileName = 'qr.jpg'; // Image's name for the QR
@@ -22,61 +22,44 @@ client.on("ready", () => {
   client.user.setActivity('Amongus')
 })
 
-const PREFIX = process.env.PREFIX;
-
-client.commands = new Collection();
-
-const commandFiles = fs
-  .readdirSync('./commands')
-  .filter((file) => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  // Set a new item in the Collection
-  // With the key as the command name and the value as the exported module
-  client.commands.set(command.name, command);
-}
-
-client.on('message', function (message) {
-    if (message.author.bot) return;
-    if (!message.content.startsWith(PREFIX)) return;
-  
-    // Convert the rest of the message to a command name and any arguments that
-    // may exist in the message.
-    const args = message.content.slice(PREFIX.length).trim().split(/ +/);
-    const commandName = args.shift().toLowerCase();
-  
-    if (!client.commands.has(commandName)) return;
-    const command = client.commands.get(commandName);
-
-    try {
-        command.run(message, args);
-      } catch (error) {
-        console.error(error);
-        message.reply('Error trying to execute that command.');
-      }
-    });
-
 client.on("messageCreate", async message => {
     if (message.content == "hola"){
         message.channel.send("Alo :3")
     }
 })
 
-// Auto execute this function when the server is started
-(async () => {
-  // Create the object to run the scraper
-  // const utaScraper = new UtaScrapper('')
-  // utaScraper.runScraping();
+const prefix = `!`;
 
-  // await generateQR(urlToQR, QRFileName);
-  
-  // let fortune = getFortune('shellFortune');
-  // console.log(fortune);
+// Create a collection to store the commands
+client.commands = new Collection();
 
-  const webStatus = new websiteStatus();
-  webStatus.getStatus(urlToScan);
-})();
+// Read all the .js files in the commands directory
+const commandFiles = fs.readdirSync(`${__dirname}/commands`).filter(file => file.endsWith('.js'));
+
+// Import all the commands and add them to the collection
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.name, command);
+}
+
+client.on("messageCreate", (message) => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  const args = message.content.slice(prefix.length).split(/ +/);
+  const commandName = args.shift().toLowerCase();
+
+  const command = client.commands.get(commandName);
+
+  if (!command) return;
+
+  try {
+      command.execute(message, args);
+  } catch (error) {
+      console.error(error);
+      message.reply('Hubo un error al ejecutar ese comando.');
+  }
+
+});
 
 client.login(process.env.TOKEN)
  
