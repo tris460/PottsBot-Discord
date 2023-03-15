@@ -8,7 +8,7 @@ module.exports = {
     execute(message, args) {
         (async () => {          
           const fortune = getFortune('dailyFortune');
-          message.channel.send(fortune);
+          message.channel.send('🥠 ' + fortune);
           })();
     },
 };
