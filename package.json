@@ -15,6 +15,8 @@
   "author": "Beatriz Martinez Perez",
   "license": "ISC",
   "dependencies": {
+    "discord.js": "^14.8.0",
+    "dotenv": "^16.0.3",
     "pdf-lib": "^1.17.1",
     "puppeteer": "^19.6.3",
     "qrcode": "^1.5.1"
