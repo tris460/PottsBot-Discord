@@ -60,6 +60,11 @@ class Scraper {
     await this.page.waitForTimeout(time);
     await this.page.type(id, text);
   }
+
+  async getPDF(options) {
+    let pdf = await this.page.pdf(options);
+    return pdf;
+  }
 }
 
 module.exports = Scraper;

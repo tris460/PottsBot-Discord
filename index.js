@@ -9,11 +9,13 @@ const { Client, Collection } = require('discord.js');
 const client = new Client({ intents: [3276799] })
 
 const UtaScrapper = require('./Functions/utaScraper');
+const websiteStatus = require('./Functions/websiteStatus');
 const { generateQR } = require('./Functions/generateQR');
 const { getFortune } = require('./Functions/fortune');
 
 const urlToQR = 'https://www.youtube.com/watch?v=kF-wqxZPGwA'; // URL to convert to QR code
 const QRFileName = 'qr.jpg'; // Image's name for the QR
+const urlToScan = 'https://github.com';
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
@@ -69,8 +71,11 @@ client.on("messageCreate", async message => {
 
   // await generateQR(urlToQR, QRFileName);
   
-  let fortune = getFortune('shellFortune');
-  console.log(fortune);
+  // let fortune = getFortune('shellFortune');
+  // console.log(fortune);
+
+  const webStatus = new websiteStatus();
+  webStatus.getStatus(urlToScan);
 })();
 
 client.login(process.env.TOKEN)
