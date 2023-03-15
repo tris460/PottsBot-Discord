@@ -19,5 +19,5 @@ module.exports = {
     },
 };
 
-const websiteStatus = require('./websiteStatus');
+const websiteStatus = require('../Functions/websiteStatus');
 const urlToScan = 'https://github.com';

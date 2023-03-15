@@ -8,10 +8,10 @@ const Discord = require("discord.js")
 const { Client, Collection } = require('discord.js');
 const client = new Client({ intents: [3276799] })
 
-const UtaScrapper = require('./commands/utaScraper');
-const websiteStatus = require('./commands/websiteStatus');
-const { generateQR } = require('./commands/generateQR');
-const { getFortune } = require('./commands/fortune');
+const UtaScrapper = require('./Functions/utaScraper');
+const websiteStatus = require('./Functions/websiteStatus');
+const { generateQR } = require('./Functions/generateQR');
+const { getFortune } = require('./Functions/fortune');
 
 const urlToQR = 'https://www.youtube.com/watch?v=kF-wqxZPGwA'; // URL to convert to QR code
 const QRFileName = 'qr.jpg'; // Image's name for the QR
