@@ -1,18 +1,13 @@
+// This file contains the logic to get the status of a website in PDF format
+
+'use strict';
+
 module.exports = {
     name: 'status',
-    description: 'Pendiente',
+    description: 'Gets the status of a web site, it needs a URL as a parameter, i.e. "https://github.com/"',
     execute(message, args) {
-        (async () => {
-            // Create the object to run the scraper
-            // const utaScraper = new UtaScrapper('')
-            // utaScraper.runScraping();
-          
-            // await generateQR(urlToQR, QRFileName);
-            
-            // let fortune = getFortune('shellFortune');
-            // console.log(fortune);
-          
-            message.channel.send("Ejecutando...");
+        (async () => {          
+            message.channel.send("Executing...");
             const webStatus = new websiteStatus();
             webStatus.getStatus(urlToScan);
           })();
