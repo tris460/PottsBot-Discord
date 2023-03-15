@@ -42,6 +42,19 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+// Add the "help" command to the collection
+client.commands.set("help", {
+    name: "help",
+    description: "Muestra la lista de comandos disponibles",
+    execute(message, args) {
+      const commandList = client.commands.map(command => {
+        return `${prefix}${command.name} - ${command.description}`;
+      }).join('\n');
+  
+      message.channel.send(`Lista de comandos disponibles:\n${commandList}`);
+    }
+  });
+
 client.on("messageCreate", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
