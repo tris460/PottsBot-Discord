@@ -63,11 +63,12 @@ class generateAPA {
         // await myPage.click(CLIPBOARD_BUTTON_ID, TIME_OUT);
         // await myPage.click(CLIPBOARD_CONFIRM_ID, TIME_OUT);
 
-        await myPage.waitForSelector(CITA_TEXT_ID, TIME_OUT)
-        const text = await myPage.getTextContent(CITA_TEXT_ID);
-        console.log(text);
+        await myPage.waitForSelector(CITA_TEXT_ID, TIME_OUT);
 
+        const text = await myPage.getTextContent(CITA_TEXT_ID);
         await myPage.closeBrowser();
+
+        return text;
     }
 }
 
