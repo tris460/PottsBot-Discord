@@ -2,6 +2,8 @@
 
 'use strict';
 
+const { Key } = require('puppeteer');
+
 class Scraper {
     /**
      * Initialize the necessary parameters for the functions
@@ -51,6 +53,16 @@ class Scraper {
     }
 
     /**
+     * This function press key enter.
+     * @param {string} key HTML selector where you want to put text
+     */
+    async press(key) {
+        await this.page.keyboard.press(key);
+        console.log('presione ', key);
+    }
+
+
+    /**
      * This function fills an input with the text you choose.
      * @param {string} id HTML selector where you want to put text
      * @param {string} text Text you want to put in the HTML element
@@ -73,8 +85,6 @@ class Scraper {
         await this.page.pdf(options);
     }
 
-
-
     /**
      * This function returns the text content of an element
      * @param {string} selector HTML selector of the element
@@ -86,8 +96,6 @@ class Scraper {
             return element ? element.textContent : null;
         }, selector);
         return textContent;
-
-
     }
 
 }
