@@ -9,7 +9,14 @@ module.exports = {
         (async () => {          
             message.channel.send("Executing...");
             const webStatus = new websiteStatus();
-            webStatus.getStatus(urlToScan);
+            
+            await webStatus.getStatus(urlToScan);
+            message.channel.send({ files: ["../PottsBot/status.pdf"] })
+            .then(() => { message.channel.send("It is your status 📊") })
+            .catch((e) => { 
+                message.channel.send("There was an error getting the status 😔")
+                console.error(e)
+            });
           })();
     },
 };
