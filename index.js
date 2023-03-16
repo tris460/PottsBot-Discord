@@ -9,18 +9,20 @@ const { Client, Collection } = require('discord.js');
 const client = new Client({ intents: [3276799] })
 
 const UtaScrapper = require('./Functions/utaScraper');
+const generateAPA = require('./Functions/generateAPA');
 const { generateQR } = require('./Functions/generateQR');
 
 const urlToQR = 'https://www.youtube.com/watch?v=kF-wqxZPGwA'; // URL to convert to QR code
 const QRFileName = 'qr.jpg'; // Image's name for the QR
+const urlToAPA = 'https://www.digitalocean.com/community/tutorials/how-to-import-and-export-a-mongodb-database-on-ubuntu-20-04-es';
 
 client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`)
-  client.user.setActivity('Amongus')
+    console.log(`Logged in as ${client.user.tag}!`)
+    client.user.setActivity('Amongus')
 })
 
 client.on("messageCreate", async message => {
-    if (message.content == "hola"){
+    if (message.content == "hola") {
         message.channel.send("Alo :3")
     }
 })
@@ -44,32 +46,31 @@ client.commands.set("help", {
     name: "help",
     description: "Muestra la lista de comandos disponibles",
     execute(message, args) {
-      const commandList = client.commands.map(command => {
-        return `${prefix}${command.name} - ${command.description}`;
-      }).join('\n');
-  
-      message.channel.send(`Lista de comandos disponibles:\n${commandList}`);
+        const commandList = client.commands.map(command => {
+            return `${prefix}${command.name} - ${command.description}`;
+        }).join('\n');
+
+        message.channel.send(`Lista de comandos disponibles:\n${commandList}`);
     }
-  });
+});
 
 client.on("messageCreate", (message) => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-  const args = message.content.slice(prefix.length).split(/ +/);
-  const commandName = args.shift().toLowerCase();
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const commandName = args.shift().toLowerCase();
 
-  const command = client.commands.get(commandName);
+    const command = client.commands.get(commandName);
 
-  if (!command) return;
+    if (!command) return;
 
-  try {
-      command.execute(message, args);
-  } catch (error) {
-      console.error(error);
-      message.reply('Hubo un error al ejecutar ese comando.');
-  }
+    try {
+        command.execute(message, args);
+    } catch (error) {
+        console.error(error);
+        message.reply('Hubo un error al ejecutar ese comando.');
+    }
 
 });
 
 client.login(process.env.TOKEN)
- 
