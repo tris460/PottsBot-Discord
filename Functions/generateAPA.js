@@ -58,10 +58,10 @@ class generateAPA {
         await myPage.waitForSelector(CITA_BUTTON_ID, TIME_OUT)
         await myPage.click(CITA_BUTTON_ID, TIME_OUT);
 
-        await myPage.waitForSelector(CLIPBOARD_BUTTON_ID, TIME_OUT);
+        // await myPage.waitForSelector(CLIPBOARD_BUTTON_ID, TIME_OUT);
 
-        await myPage.click(CLIPBOARD_BUTTON_ID, TIME_OUT);
-        await myPage.click(CLIPBOARD_CONFIRM_ID, TIME_OUT);
+        // await myPage.click(CLIPBOARD_BUTTON_ID, TIME_OUT);
+        // await myPage.click(CLIPBOARD_CONFIRM_ID, TIME_OUT);
 
         await myPage.waitForSelector(CITA_TEXT_ID, TIME_OUT)
         const text = await myPage.getTextContent(CITA_TEXT_ID);
