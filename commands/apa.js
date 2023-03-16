@@ -1,12 +1,13 @@
-// This document contains the logic to send you your fortune 
+// This document contains the logic to send you an APA reference of a given URL 
 
 'use strict';
 
 module.exports = {
     name: 'apa',
-    description: 'hola',
+    description: 'Sends the apa reference from a given URL',
     execute(message, args) {
         (async() => {
+            message.channel.send("Executing APA...");
             const apaGenerator = new generateAPA();
             const apa = await apaGenerator.runScraping(urlToAPA);
             message.channel.send('📖 ' + apa)
