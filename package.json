@@ -1,21 +1,21 @@
 {
-  "name": "pottsbot",
-  "version": "1.0.0",
-  "description": "A bot which sends data by a Discord message.",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "keywords": [
-    "bot",
-    "discord",
-    "puppeteer",
-    "javascript"
-  ],
-  "author": "Beatriz Martinez Perez",
-  "license": "ISC",
-  "dependencies": {
-    "puppeteer": "^19.6.3",
-    "qrcode": "^1.5.1"
-  }
+    "name": "pottsbot",
+    "version": "1.0.0",
+    "description": "A bot which sends data by a Discord message.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "keywords": [
+        "bot",
+        "discord",
+        "puppeteer",
+        "javascript"
+    ],
+    "author": "Beatriz Martinez Perez",
+    "license": "ISC",
+    "dependencies": {
+        "puppeteer": "^19.6.3",
+        "qrcode": "^1.5.1"
+    }
 }
