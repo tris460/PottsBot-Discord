@@ -18,7 +18,6 @@ const generateQR = async(url, filePath) => {
   
     fs.writeFile(filePath, buffer, 'binary', (err) => { // Save the QR in image format
       if(err) console.error('Error: ', err);
-      console.log("QR saved correctly");
     });
   } catch (err) {
     console.error('Error generating QR: ', err);
