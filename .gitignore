@@ -10,7 +10,6 @@ environments
 .env
 
 # Images
-*.jpg
 *.png
 *.gif
 *.jpeg
