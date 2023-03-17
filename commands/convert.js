@@ -3,13 +3,13 @@
 'use strict';
 
 module.exports = {
-    name: 'convert',
+    name: 'time',
     description: 'convert hours',
     execute(message, args) {
         (async() => {
             const convert = new convertHours();
             const hoursConverted = await convert.runScraping(fromCity, toCity);
-            message.channel.send('📖 ' + hoursConverted)
+            message.channel.send('🕑 ' + hoursConverted)
         })();
     },
 };
