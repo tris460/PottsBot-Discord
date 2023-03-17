@@ -32,7 +32,7 @@ class convertHours {
     async newBrowser() {
         return await puppeteer.launch({
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            headless: false
+            headless: true
         });
     }
 
