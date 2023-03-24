@@ -6,10 +6,13 @@ module.exports = {
     name: 'shell',
     description: 'Gives an answer for an specific question',
     execute(message, args) {
+        /**
+         * This function gets the fortune (a random text)
+         */
         (async () => {          
-          const fortune = getFortune('shellFortune');
-          message.channel.send('🐚 ' + fortune);
-          })();
+          const FORTUNE = getFortune('shellFortune');
+          message.channel.send('🐚 ' + FORTUNE);
+        })();
     },
 };
 

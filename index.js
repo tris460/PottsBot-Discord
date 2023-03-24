@@ -1,33 +1,12 @@
-// This file will contain the bot connected with Discord
+// This file contains the bot connected with Discord
 
 'use strict';
 
 require('dotenv').config();
 const fs = require('fs');
-const Discord = require("discord.js")
 const { Client, Collection } = require('discord.js');
-const client = new Client({ intents: [3276799] })
-
-const UtaScrapper = require('./Functions/utaScraper');
-const generateAPA = require('./Functions/generateAPA');
-const { generateQR } = require('./Functions/generateQR');
-
-const urlToQR = 'https://www.youtube.com/watch?v=kF-wqxZPGwA'; // URL to convert to QR code
-const QRFileName = 'qr.jpg'; // Image's name for the QR
-const urlToAPA = 'https://www.digitalocean.com/community/tutorials/how-to-import-and-export-a-mongodb-database-on-ubuntu-20-04-es';
-
-client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('Amongus')
-})
-
-client.on("messageCreate", async message => {
-    if (message.content == "hola") {
-        message.channel.send("Alo :3")
-    }
-})
-
-const prefix = `!`;
+const client = new Client({ intents: [3276799] });
+const prefix = `!`; // Every command must start with it
 
 // Create a collection to store the commands
 client.commands = new Collection();
@@ -40,6 +19,23 @@ for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
+
+/**
+ * Verify if the bot is online, if yes, it will set its activity as playing Amongus and will inform it in console
+ */
+client.on("ready", () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+    client.user.setActivity('Amongus');
+});
+
+/**
+ * Reads the messages, and when the user sends 'hola', it answers with a message
+ */
+client.on("messageCreate", async message => {
+    if (message.content == "hola") {
+        message.channel.send("Alo :3");
+    }
+});
 
 // Add the "help" command to the collection
 client.commands.set("help", {
@@ -54,6 +50,9 @@ client.commands.set("help", {
     }
 });
 
+/**
+ * When the bot gets a message, it gets the command, verify ha it exists and execute it
+ */
 client.on("messageCreate", (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -70,7 +69,6 @@ client.on("messageCreate", (message) => {
         console.error(error);
         message.reply('Hubo un error al ejecutar ese comando.');
     }
-
 });
 
-client.login(process.env.TOKEN)
+client.login(process.env.TOKEN);

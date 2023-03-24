@@ -1,4 +1,4 @@
-// In this file you'll find the steps to collect data from the available jobs in utags.edu.mx page
+// In this file you'll find the steps to generate a reference in APA format
 
 'use strict';
 
@@ -22,7 +22,7 @@ class generateAPA {
     }
 
     /**
-     * Opens a new browser to start the starting process
+     * Opens a new browser to start the process
      * @returns A puppeteer instance
      */
     async newBrowser() {
@@ -33,10 +33,10 @@ class generateAPA {
     }
 
     /**
-     * This function executes the scraper. It opens the browser, open a new page and navigate to an specific URl.
-     * After that, it takes a screenshot of the page and close the browser.
+     * This function gets a reference in APA format. It opens the browser, open a new page and navigate to an 
+     * specific URL to get the APA reference. After that, it fills the fields and returns the reference.
      */
-    async runScraping(urlToAPA) {
+    async getAPA(urlToAPA) {
         const browser = await this.newBrowser();
         const myPage = new Scraper(browser);
         

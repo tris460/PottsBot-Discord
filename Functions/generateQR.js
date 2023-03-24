@@ -1,3 +1,5 @@
+// This file contains the logic to get a QR code from a URL
+
 'use strict';
 
 const qrcode = require("qrcode");

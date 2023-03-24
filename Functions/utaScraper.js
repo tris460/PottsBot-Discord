@@ -25,7 +25,7 @@ class UtaScrapper {
   }
 
   /**
-   * Opens a new browser to start the starting process
+   * Opens a new browser to start the process
    * @returns A puppeteer instance
    */
   async newBrowser() {

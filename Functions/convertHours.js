@@ -3,18 +3,14 @@
 'use strict';
 
 const puppeteer = require('puppeteer');
-const Scraper = require('../Utils/ScraperFunctions/index'); //TAL VEZ CAMBIAR
-
+const Scraper = require('../Utils/ScraperFunctions/index');
 
 const URL = 'https://24timezones.com/es/difference';
-
 const CONVERT_FROM_INPUT = '#converter-from'
 const CONVERT_TO_INPUT = '#converter-to'
 const HOURS_FROM = '#clock_from_time_0'
 const HOURS_TO = '#clock_to_time_0'
 const TIME_OUT = 5000;
-
-
 
 class convertHours {
     /**
@@ -37,10 +33,10 @@ class convertHours {
     }
 
     /**
-     * This function executes the scraper. It opens the browser, open a new page and navigate to an specific URl.
-     * After that, it takes a screenshot of the page and close the browser.
+     * This function gets the current hour between two cities. It opens the browser, open a new page and navigate to an specific URl.
+     * After that, it closes the browser and returns the message with the data obtained.
      */
-    async runScraping(fromCity, toCity) {
+    async getHour(fromCity, toCity) {
         const browser = await this.newBrowser();
         const myPage = new Scraper(browser);
 
@@ -50,24 +46,21 @@ class convertHours {
         await myPage.press("ArrowDown");
         await new Promise(resolve => setTimeout(resolve, 1000));
         await myPage.press("Enter");
-
         await myPage.fillInput(CONVERT_TO_INPUT, toCity);
         await new Promise(resolve => setTimeout(resolve, 1000));
         await myPage.press("ArrowDown");
         await new Promise(resolve => setTimeout(resolve, 1000));
         await myPage.press("Enter");
-
         await new Promise(resolve => setTimeout(resolve, 1000));
+        await myPage.waitForSelector(HOURS_FROM, TIME_OUT);
 
-        await myPage.waitForSelector(HOURS_FROM, TIME_OUT)
-        const hoursFrom = await myPage.getTextContent(HOURS_FROM);
-        const hoursTo = await myPage.getTextContent(HOURS_TO);
-
-        const msg = `en ${fromCity} son las ${hoursFrom} mientras que en ${toCity} son las ${hoursTo}`
+        const TIME_FROM = await myPage.getTextContent(HOURS_FROM);
+        const TIME_TO = await myPage.getTextContent(HOURS_TO);
+        const MESSAGE = `En ${fromCity} son las ${TIME_FROM}, mientras que en ${toCity} son las ${TIME_TO}`;
 
         await myPage.closeBrowser();
 
-        return msg;
+        return MESSAGE;
     }
 }
 

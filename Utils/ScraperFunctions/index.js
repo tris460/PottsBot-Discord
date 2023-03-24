@@ -58,7 +58,6 @@ class Scraper {
      */
     async press(key) {
         await this.page.keyboard.press(key);
-        console.log('presione ', key);
     }
 
 
@@ -97,7 +96,6 @@ class Scraper {
         }, selector);
         return textContent;
     }
-
 }
 
 module.exports = Scraper;

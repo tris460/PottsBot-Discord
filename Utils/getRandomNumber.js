@@ -1,3 +1,5 @@
+// This file generates a random number between two numbers
+
 'use strict';
 
 /**

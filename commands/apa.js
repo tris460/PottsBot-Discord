@@ -3,17 +3,20 @@
 'use strict';
 
 module.exports = {
-    name: 'apa',
+    name: 'apa', // Command's name
     description: 'Sends the apa reference from a given URL',
     execute(message, args) {
+        /**
+         * This function calls the APA generator and sends the result to the user 
+         */
         (async() => {
             message.channel.send("Executing APA...");
             const apaGenerator = new generateAPA();
-            const apa = await apaGenerator.runScraping(urlToAPA);
-            message.channel.send('📖 ' + apa)
+            const APA = await apaGenerator.getAPA(URL_TO_APA);
+            message.channel.send('📖 ' + APA)
         })();
     },
 };
 
 const generateAPA = require('../Functions/generateAPA');
-const urlToAPA = 'https://www.digitalocean.com/community/tutorials/how-to-import-and-export-a-mongodb-database-on-ubuntu-20-04-es'
+const URL_TO_APA = 'https://www.digitalocean.com/community/tutorials/how-to-import-and-export-a-mongodb-database-on-ubuntu-20-04-es'
