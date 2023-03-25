@@ -1,6 +1,8 @@
 # 👾 POTTS BOT - A New Discord Bot 👾
 
 ## What is it?
+A Discord bot which automates different actions (described further), it can give you an APA reference, a QR from any valid URL, give you a status of some website, among other functions. <br>
+You can edit the functions described below to your own purposes, this code was developed to be highly scalable.
 
 ## Instalation
  1.- First, clone this GitHub repository, you can do it by:
@@ -28,7 +30,22 @@ Right now we have just a few commands you can use:
 8. `!status <string url>` Returns the status of your website in PDF format.
 
 ## Use examples
-
+### Help
+![](https://github.com/tris460/PottsBot-Discord/blob/main/assets/readme/help.png)
+### APA
+![](https://github.com/tris460/PottsBot-Discord/blob/main/assets/readme/apa.png)
+### Convert
+![](https://github.com/tris460/PottsBot-Discord/blob/main/assets/readme/convert.png)
+### Fortune
+![](https://github.com/tris460/PottsBot-Discord/blob/main/assets/readme/fortune.png)
+### Meme
+![](https://github.com/tris460/PottsBot-Discord/blob/main/assets/readme/meme.png)
+### QR
+![](https://github.com/tris460/PottsBot-Discord/blob/main/assets/readme/qr.png)
+### Shell
+![](https://github.com/tris460/PottsBot-Discord/blob/main/assets/readme/shell.png)
+### Status
+![](https://github.com/tris460/PottsBot-Discord/blob/main/assets/readme/status.png)
 
 ## System info
 This project was created with the following requeriments and dependences: <br>
