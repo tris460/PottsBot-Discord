@@ -9,10 +9,15 @@ module.exports = {
         /**
          * This function gets the fortune and sends it to the user
          */
-        (async () => {          
-          const fortune = getFortune('dailyFortune');
-          message.channel.send('🥠 ' + fortune);
-          })();
+        (async () => {
+            try {
+                const fortune = getFortune('dailyFortune');
+                message.channel.send('🥠 ' + fortune);
+            } catch(e) {
+                // TODO: Here we have to save the log
+                message.channel.send('Sorry, an unexpected error has happened 😞');
+            }
+        })();
     },
 };
 

@@ -10,11 +10,16 @@ module.exports = {
          * This function generates a QR from a URL and sends it as a image
          */
         (async () => {
-          generateQR();
-          await generateQR(URL_TO_QR, QR_FILE_NAME);
-          
-          message.channel.send({ files: [`../PottsBot/qr.jpg`]});
-          message.channel.send('It is the QR code to the URL 🖥');
+          try {
+            generateQR();
+            await generateQR(URL_TO_QR, QR_FILE_NAME);
+            
+            message.channel.send({ files: [`../PottsBot/qr.jpg`]});
+            message.channel.send('It is the QR code to the URL 🖥');
+          } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+          }
         })();
     },
 };

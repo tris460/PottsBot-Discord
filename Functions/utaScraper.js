@@ -29,10 +29,15 @@ class UtaScrapper {
    * @returns A puppeteer instance
    */
   async newBrowser() {
-    return await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      headless: false
-    });
+    try {
+      return await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        headless: false
+      });
+    } catch(e) {
+      // TODO: Here we have to save the log
+      message.channel.send('Sorry, an unexpected error has happened 😞');
+    }
   }
 
   /**
@@ -40,17 +45,22 @@ class UtaScrapper {
    * After that, it takes a screenshot of the page and close the browser.
    */
   async runScraping() {
-    const browser = await this.newBrowser();
-    const myPage = new Scraper(browser);
+    try {
+      const browser = await this.newBrowser();
+      const myPage = new Scraper(browser);
 
-    await myPage.openNewPage(URL);
-    await myPage.fillInput(USER_INPUT_ID, '190343', TIME_OUT);
-    await myPage.fillInput(PASSWORD_INPUT_ID, 'b1f17e5e',TIME_OUT);
-    await myPage.click(LOGIN_BUTTON_ID);
-    await myPage.waitForSelector(MENU_ID);
-    await myPage.click(PAGOS_BUTTON_ID);
-    await myPage.takeScreenshot();
-    await myPage.closeBrowser();
+      await myPage.openNewPage(URL);
+      await myPage.fillInput(USER_INPUT_ID, '190343', TIME_OUT);
+      await myPage.fillInput(PASSWORD_INPUT_ID, 'b1f17e5e',TIME_OUT);
+      await myPage.click(LOGIN_BUTTON_ID);
+      await myPage.waitForSelector(MENU_ID);
+      await myPage.click(PAGOS_BUTTON_ID);
+      await myPage.takeScreenshot();
+      await myPage.closeBrowser();
+    } catch(e) {
+      // TODO: Here we have to save the log
+      message.channel.send('Sorry, an unexpected error has happened 😞');
+    }
   }
 }
 

@@ -33,20 +33,20 @@ client.on("ready", () => {
  */
 client.on("messageCreate", async message => {
     if (message.content == "hola") {
-        message.channel.send("Alo :3");
+        message.channel.send("Hi :3");
     }
 });
 
 // Add the "help" command to the collection
 client.commands.set("help", {
     name: "help",
-    description: "Muestra la lista de comandos disponibles",
+    description: "Show a list of the commands available",
     execute(message, args) {
         const commandList = client.commands.map(command => {
             return `${prefix}${command.name} - ${command.description}`;
         }).join('\n');
 
-        message.channel.send(`Lista de comandos disponibles:\n${commandList}`);
+        message.channel.send(`Available commands:\n${commandList}`);
     }
 });
 
@@ -65,9 +65,9 @@ client.on("messageCreate", (message) => {
 
     try {
         command.execute(message, args);
-    } catch (error) {
-        console.error(error);
-        message.reply('Hubo un error al ejecutar ese comando.');
+    } catch(e) {
+        // TODO: Here we have to save the log
+        message.reply('Sorry, an unexpected error has happened 😞');
     }
 });
 

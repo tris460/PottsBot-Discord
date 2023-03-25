@@ -26,10 +26,15 @@ class convertHours {
      * @returns A puppeteer instance
      */
     async newBrowser() {
-        return await puppeteer.launch({
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            headless: true
-        });
+        try {
+            return await puppeteer.launch({
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                headless: true
+            });
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
     /**
@@ -37,30 +42,35 @@ class convertHours {
      * After that, it closes the browser and returns the message with the data obtained.
      */
     async getHour(fromCity, toCity) {
-        const browser = await this.newBrowser();
-        const myPage = new Scraper(browser);
+        try {
+            const browser = await this.newBrowser();
+            const myPage = new Scraper(browser);
 
-        await myPage.openNewPage(URL);
-        await myPage.fillInput(CONVERT_FROM_INPUT, fromCity);
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        await myPage.press("ArrowDown");
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        await myPage.press("Enter");
-        await myPage.fillInput(CONVERT_TO_INPUT, toCity);
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        await myPage.press("ArrowDown");
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        await myPage.press("Enter");
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        await myPage.waitForSelector(HOURS_FROM, TIME_OUT);
+            await myPage.openNewPage(URL);
+            await myPage.fillInput(CONVERT_FROM_INPUT, fromCity);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await myPage.press("ArrowDown");
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await myPage.press("Enter");
+            await myPage.fillInput(CONVERT_TO_INPUT, toCity);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await myPage.press("ArrowDown");
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await myPage.press("Enter");
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await myPage.waitForSelector(HOURS_FROM, TIME_OUT);
 
-        const TIME_FROM = await myPage.getTextContent(HOURS_FROM);
-        const TIME_TO = await myPage.getTextContent(HOURS_TO);
-        const MESSAGE = `En ${fromCity} son las ${TIME_FROM}, mientras que en ${toCity} son las ${TIME_TO}`;
+            const TIME_FROM = await myPage.getTextContent(HOURS_FROM);
+            const TIME_TO = await myPage.getTextContent(HOURS_TO);
+            const MESSAGE = `En ${fromCity} son las ${TIME_FROM}, mientras que en ${toCity} son las ${TIME_TO}`;
 
-        await myPage.closeBrowser();
+            await myPage.closeBrowser();
 
-        return MESSAGE;
+            return MESSAGE;
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 }
 

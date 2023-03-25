@@ -19,29 +19,49 @@ class Scraper {
      * @param {string} url Valid URL to open in the browser
      */
     async openNewPage(url) {
-        this.page = await this.browser.newPage();
-        await this.page.goto(url);
+        try {
+            this.page = await this.browser.newPage();
+            await this.page.goto(url);
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
     /**
      * This function closes the browser, finishing the process
      */
     async closeBrowser() {
-        await this.browser.close();
+        try {
+            await this.browser.close();
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
     /**
      * This function takes a screenshot of the site, and saves it in the specified path
      */
     async takeScreenshot() {
-        await this.page.screenshot({ path: 'screenshots/image.jpg' });
+        try {
+            await this.page.screenshot({ path: 'screenshots/image.jpg' });
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
     /**
      * This function stablish a pause before you can continue with your process, in order to charge the page completely
      */
     async waitForSelector(selector) {
-        await this.page.waitForSelector(selector);
+        try {
+            await this.page.waitForSelector(selector);
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
     /**
@@ -49,7 +69,12 @@ class Scraper {
      * @param {string} selector HTML selector where you want to click
      */
     async click(selector) {
-        await this.page.click(selector);
+        try {
+            await this.page.click(selector);
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
     /**
@@ -57,7 +82,12 @@ class Scraper {
      * @param {string} key HTML selector where you want to put text
      */
     async press(key) {
-        await this.page.keyboard.press(key);
+        try {
+            await this.page.keyboard.press(key);
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
 
@@ -68,8 +98,13 @@ class Scraper {
      * @param {int} time How many time are we going to wait for the result (in milliseconds)
      */
     async fillInput(id, text, time) {
-        await this.page.waitForTimeout(time);
-        await this.page.type(id, text);
+        try {
+            await this.page.waitForTimeout(time);
+            await this.page.type(id, text);
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
     /**
@@ -81,7 +116,12 @@ class Scraper {
      * printBackground: Boolean value (true for print the styles of page)
      */
     async getPDF(options) {
-        await this.page.pdf(options);
+        try {
+            await this.page.pdf(options);
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
     /**
@@ -90,11 +130,16 @@ class Scraper {
      * @returns {Promise<string>} The text content of the element
      */
     async getTextContent(selector) {
-        const textContent = await this.page.evaluate((sel) => {
-            const element = document.querySelector(sel);
-            return element ? element.textContent : null;
-        }, selector);
-        return textContent;
+        try {
+            const textContent = await this.page.evaluate((sel) => {
+                const element = document.querySelector(sel);
+                return element ? element.textContent : null;
+            }, selector);
+            return textContent;
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 }
 

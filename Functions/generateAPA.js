@@ -26,10 +26,15 @@ class generateAPA {
      * @returns A puppeteer instance
      */
     async newBrowser() {
-        return await puppeteer.launch({
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            headless: true
-        });
+        try {
+            return await puppeteer.launch({
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                headless: true
+            });
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 
     /**
@@ -37,19 +42,24 @@ class generateAPA {
      * specific URL to get the APA reference. After that, it fills the fields and returns the reference.
      */
     async getAPA(urlToAPA) {
-        const browser = await this.newBrowser();
-        const myPage = new Scraper(browser);
-        
-        await myPage.openNewPage(URL);
-        await myPage.fillInput(URL_INPUT_ID, urlToAPA);
-        await myPage.click(BUSQUEDA_BUTTON_ID, TIME_OUT);
-        await myPage.waitForSelector(CITA_BUTTON_ID, TIME_OUT)
-        await myPage.click(CITA_BUTTON_ID, TIME_OUT);
-        await myPage.waitForSelector(CITA_TEXT_ID, TIME_OUT);
-        const text = await myPage.getTextContent(CITA_TEXT_ID);
-        await myPage.closeBrowser();
+        try {
+            const browser = await this.newBrowser();
+            const myPage = new Scraper(browser);
+            
+            await myPage.openNewPage(URL);
+            await myPage.fillInput(URL_INPUT_ID, urlToAPA);
+            await myPage.click(BUSQUEDA_BUTTON_ID, TIME_OUT);
+            await myPage.waitForSelector(CITA_BUTTON_ID, TIME_OUT)
+            await myPage.click(CITA_BUTTON_ID, TIME_OUT);
+            await myPage.waitForSelector(CITA_TEXT_ID, TIME_OUT);
+            const text = await myPage.getTextContent(CITA_TEXT_ID);
+            await myPage.closeBrowser();
 
-        return text;
+            return text;
+        } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+        }
     }
 }
 

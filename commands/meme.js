@@ -10,10 +10,15 @@ module.exports = {
          * This function gets a random number to get an image and send it to the user
          */
         (async () => {
-          const INDEX = getRandomNumber(1, 20);
-          const NAME = `meme${INDEX}.jpg`;
+          try {
+            const INDEX = getRandomNumber(1, 20);
+            const NAME = `meme${INDEX}.jpg`;
 
-          message.channel.send({ files: [`../PottsBot/assets/memes/${NAME}`]})
+            message.channel.send({ files: [`../PottsBot/assets/memes/${NAME}`]});
+          } catch(e) {
+            // TODO: Here we have to save the log
+            message.channel.send('Sorry, an unexpected error has happened 😞');
+          }
         })();
     },
 };

@@ -3,16 +3,22 @@
 'use strict';
 
 module.exports = {
-    name: 'time',
+    name: 'convert',
     description: 'Convert hours from two cities/countries',
     execute(message, args) {
         /**
          * This function calls convertHours() to get the time between two places.
          */
         (async() => {
-            const convert = new convertHours();
-            const HOURS_CONVERTED = await convert.getHour(FROM_CITY, TO_CITY);
-            message.channel.send('🕑 ' + HOURS_CONVERTED)
+            try {
+                message.channel.send("Converting...");
+                const convert = new convertHours();
+                const HOURS_CONVERTED = await convert.getHour(FROM_CITY, TO_CITY);
+                message.channel.send('🕑 ' + HOURS_CONVERTED);
+            } catch(e) {
+                // TODO: Here we have to save the log
+                message.channel.send('Sorry, an unexpected error has happened 😞');
+            }
         })();
     },
 };

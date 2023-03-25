@@ -10,10 +10,15 @@ module.exports = {
          * This function calls the APA generator and sends the result to the user 
          */
         (async() => {
-            message.channel.send("Executing APA...");
-            const apaGenerator = new generateAPA();
-            const APA = await apaGenerator.getAPA(URL_TO_APA);
-            message.channel.send('📖 ' + APA)
+            try {
+                message.channel.send("Executing APA...");
+                const apaGenerator = new generateAPA();
+                const APA = await apaGenerator.getAPA(URL_TO_APA);
+                message.channel.send('📖 ' + APA);
+            } catch(e) {
+                // TODO: Here we have to save the log
+                message.channel.send('Sorry, an unexpected error has happened 😞');
+            }
         })();
     },
 };

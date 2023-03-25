@@ -33,10 +33,15 @@ class websiteStatus {
    * @returns A puppeteer instance
    */
   async newBrowser() {
-    return await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      headless: true
-    });
+    try {
+      return await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        headless: false
+      });
+    } catch(e) {
+      // TODO: Here we have to save the log
+      message.channel.send('Sorry, an unexpected error has happened 😞');
+    }
   }
   
   /**
@@ -45,15 +50,20 @@ class websiteStatus {
    * @param { string } urlToScan URL you want to scan
    */
   async getStatus(urlToScan) {
-    const browser = await this.newBrowser();
-    const myPage = new Scraper(browser);
+    try {
+      const browser = await this.newBrowser();
+      const myPage = new Scraper(browser);
 
-    await myPage.openNewPage(URL);
-    await myPage.fillInput(INPUT_ID, urlToScan, TIME_OUT);
-    await myPage.click(BUTTON_SELECTOR);
-    await myPage.waitForSelector(WAIT_SELECTOR);
-    await myPage.getPDF(options);
-    await myPage.closeBrowser();
+      await myPage.openNewPage(URL);
+      await myPage.fillInput(INPUT_ID, urlToScan, TIME_OUT);
+      await myPage.click(BUTTON_SELECTOR);
+      await myPage.waitForSelector(WAIT_SELECTOR);
+      await myPage.getPDF(options);
+      await myPage.closeBrowser();
+    } catch(e) {
+      // TODO: Here we have to save the log
+      message.channel.send('Sorry, an unexpected error has happened 😞');
+    }
   }
 }
 
