@@ -4,7 +4,7 @@
 
 module.exports = {
     name: 'qr',
-    description: 'Sends a QR from a given URL',
+    description: 'Sends a QR from a given URL. It needs a valid URL as a parameter.',
     execute(message, args) {
         /**
          * This function generates a QR from a URL and sends it as a image

@@ -4,7 +4,7 @@
 
 module.exports = {
     name: 'apa', // Command's name
-    description: 'Sends the apa reference from a given URL',
+    description: 'Sends the apa reference from a given URL. It needs a valid URL as parameter.',
     execute(message, args) {
         /**
          * This function calls the APA generator and sends the result to the user 

@@ -4,7 +4,7 @@
 
 module.exports = {
     name: 'convert',
-    description: 'Convert hours from two cities/countries',
+    description: 'Convert hours from two cities/countries. It needs two valid cities/countries as parameters.',
     execute(message, args) {
         /**
          * This function calls convertHours() to get the time between two places.

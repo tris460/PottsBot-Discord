@@ -4,7 +4,7 @@
 
 module.exports = {
     name: 'meme',
-    description: 'Sends a funny random image',
+    description: 'Sends a funny random image.',
     execute(message, args) {
         /**
          * This function gets a random number to get an image and send it to the user
