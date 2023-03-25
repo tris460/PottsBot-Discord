@@ -24,7 +24,7 @@ class Scraper {
             await this.page.goto(url);
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 
@@ -36,7 +36,7 @@ class Scraper {
             await this.browser.close();
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 
@@ -48,7 +48,7 @@ class Scraper {
             await this.page.screenshot({ path: 'screenshots/image.jpg' });
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 
@@ -60,7 +60,7 @@ class Scraper {
             await this.page.waitForSelector(selector);
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 
@@ -73,7 +73,7 @@ class Scraper {
             await this.page.click(selector);
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 
@@ -86,7 +86,7 @@ class Scraper {
             await this.page.keyboard.press(key);
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 
@@ -103,7 +103,7 @@ class Scraper {
             await this.page.type(id, text);
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 
@@ -120,7 +120,7 @@ class Scraper {
             await this.page.pdf(options);
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 
@@ -138,7 +138,7 @@ class Scraper {
             return textContent;
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 }

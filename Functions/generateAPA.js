@@ -33,7 +33,7 @@ class generateAPA {
             });
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 
@@ -58,7 +58,7 @@ class generateAPA {
             return text;
         } catch(e) {
             // TODO: Here we have to save the log
-            message.channel.send('Sorry, an unexpected error has happened 😞');
+            console.error('Sorry, an unexpected error has happened 😞');
         }
     }
 }

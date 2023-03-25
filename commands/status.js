@@ -15,18 +15,18 @@ module.exports = {
                 const webStatus = new websiteStatus();
                 
                 await webStatus.getStatus(URL_TO_SCAN);
-                message.channel.send({ files: ["../PottsBot/status.pdf"] })
-                .then(() => { message.channel.send("It is your status 📊") })
-                .catch((e) => { 
-                    message.channel.send("There was an error getting the status 😔")
-                    console.error(e)
-                });
+                await message.channel.send({ files: ["../PottsBot/status.pdf"] })
+                    .then(() => { message.channel.send("It is your status 📊"); })
+                    .catch((e) => { 
+                        message.channel.send("There was an error getting the status 😔")
+                        console.error(e)
+                    });
             } catch(e) {
                 // TODO: Here we have to save the log
                 message.channel.send('Sorry, an unexpected error has happened 😞');
             }
-          })();
-    },
+        })();
+    }
 };
 
 const websiteStatus = require('../Functions/websiteStatus');

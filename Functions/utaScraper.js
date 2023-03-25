@@ -36,7 +36,7 @@ class UtaScrapper {
       });
     } catch(e) {
       // TODO: Here we have to save the log
-      message.channel.send('Sorry, an unexpected error has happened 😞');
+      console.error('Sorry, an unexpected error has happened 😞');
     }
   }
 
@@ -59,7 +59,7 @@ class UtaScrapper {
       await myPage.closeBrowser();
     } catch(e) {
       // TODO: Here we have to save the log
-      message.channel.send('Sorry, an unexpected error has happened 😞');
+      console.error('Sorry, an unexpected error has happened 😞');
     }
   }
 }
