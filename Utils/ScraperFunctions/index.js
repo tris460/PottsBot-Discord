@@ -141,6 +141,25 @@ class Scraper {
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
+
+    /**
+     * This function returns the text content of an element by its class name
+     * @param {string} class CSS class of the element
+     * @returns {Promise<Array>} Array with the text content of each element
+     */
+    async getTextContentByClassName(selector) {
+        try {       
+            const DATA = await this.page.evaluate((sel) => {
+                const elements = document.getElementsByClassName(sel);
+                return Array.from(elements).map(element => element.innerText);
+            }, selector);
+            
+            return DATA;
+        } catch(e) {
+            // TODO: Here we have to save the log
+            console.error('Sorry, an unexpected error has happened 😞');
+        }
+    }
 }
 
 module.exports = Scraper;
