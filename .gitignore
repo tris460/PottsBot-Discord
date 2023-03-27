@@ -15,3 +15,6 @@ environments
 
 # Documents
 *.pdf
+
+# Logs
+/logs

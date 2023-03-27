@@ -3,10 +3,36 @@
 'use strict';
 
 require('dotenv').config();
+
 const fs = require('fs');
 const { Client, Collection } = require('discord.js');
+const winston = require('winston');
+
 const client = new Client({ intents: [3276799] });
 const prefix = `!`; // Every command must start with it
+
+// Create a Logger object to save the logs
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.combine(
+      winston.format.timestamp(),
+      winston.format.json()
+    ),
+    defaultMeta: { service: 'discord-bot' }, // Default info to add to each log
+    transports: [ // Files where the logs will be saved
+      new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
+      new winston.transports.File({ filename: 'logs/combined.log' })
+    ]
+  });
+
+// Save the logs in console
+logger.add(new winston.transports.Console({
+    format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.timestamp(),
+        winston.format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+    )
+}));
 
 // Create a collection to store the commands
 client.commands = new Collection();
@@ -26,6 +52,7 @@ for (const file of commandFiles) {
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity('Amongus');
+    logger.info('Bot ready, login correct');
 });
 
 /**
@@ -61,12 +88,17 @@ client.on("messageCreate", (message) => {
 
     const command = client.commands.get(commandName);
 
-    if (!command) return;
+    if (!command) {
+        message.channel.send("I don't recognize tha command, you can try !help to get a list of the available commands 😊");
+        logger.info(`Incorrect command: ${message}`);
+        return;
+    }
 
     try {
         command.execute(message, args);
+        logger.info(`Command executed: ${message}`);
     } catch(e) {
-        // TODO: Here we have to save the log
+        logger.error(`Executing command: ${message}. ${e}`);
         message.reply('Sorry, an unexpected error has happened 😞');
     }
 });
