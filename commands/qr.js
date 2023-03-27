@@ -17,13 +17,14 @@ module.exports = {
             message.channel.send({ files: [`../PottsBot/qr.jpg`]});
             message.channel.send('It is the QR code to the URL 🖥');
           } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error executing: !qr, ${e}`);
             message.channel.send('Sorry, an unexpected error has happened 😞');
           }
         })();
     },
 };
 
+const logger = require('../Utils/logs');
 const { generateQR } = require('../Functions/generateQR');
 const URL_TO_QR = 'https://github.com/tris460/PottsBot-Discord'; // URL to convert to QR code
 const QR_FILE_NAME = 'qr.jpg'; // Image's name for the QR

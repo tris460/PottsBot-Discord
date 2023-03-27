@@ -4,6 +4,7 @@
 
 const puppeteer = require('puppeteer');
 const Scraper = require('../Utils/ScraperFunctions/index');
+const logger = require('../Utils/logs');
 
 const URL = 'https://24timezones.com/es/difference';
 const CONVERT_FROM_INPUT = '#converter-from'
@@ -32,7 +33,7 @@ class convertHours {
                 headless: true
             });
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error opening browser in convertHours: ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -68,7 +69,7 @@ class convertHours {
 
             return MESSAGE;
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error executing: getHour, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }

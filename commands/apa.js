@@ -16,12 +16,13 @@ module.exports = {
                 const APA = await apaGenerator.getAPA(URL_TO_APA);
                 message.channel.send('📖 ' + APA);
             } catch(e) {
-                // TODO: Here we have to save the log
+                logger.error(`Error executing: !apa, ${e}`);
                 message.channel.send('Sorry, an unexpected error has happened 😞');
             }
         })();
     },
 };
 
+const logger = require('../Utils/logs');
 const generateAPA = require('../Functions/generateAPA');
 const URL_TO_APA = 'https://www.digitalocean.com/community/tutorials/how-to-import-and-export-a-mongodb-database-on-ubuntu-20-04-es'

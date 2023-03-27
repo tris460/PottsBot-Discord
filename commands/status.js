@@ -17,17 +17,19 @@ module.exports = {
                 await webStatus.getStatus(URL_TO_SCAN);
                 await message.channel.send({ files: ["../PottsBot/status.pdf"] })
                     .then(() => { message.channel.send("It is your status 📊"); })
-                    .catch((e) => { 
-                        message.channel.send("There was an error getting the status 😔")
-                        console.error(e)
+                    .catch((e) => {
+                        logger.error(`Error generating status, ${e}`);
+                        message.channel.send("There was an error getting the status 😔");
+                        console.error(e);
                     });
             } catch(e) {
-                // TODO: Here we have to save the log
+                logger.error(`Error executing: !status, ${e}`);
                 message.channel.send('Sorry, an unexpected error has happened 😞');
             }
         })();
     }
 };
 
+const logger = require('../Utils/logs');
 const websiteStatus = require('../Functions/websiteStatus');
 const URL_TO_SCAN = 'https://github.com';

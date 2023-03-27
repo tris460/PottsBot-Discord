@@ -5,6 +5,8 @@
 const puppeteer = require('puppeteer');
 const Scraper = require('../Utils/ScraperFunctions/index');
 const URL = 'https://www.mercadolibre.com.mx/';
+const logger = require('../Utils/logs');
+
 const SEARCH_INPUT = '#cb1-edit';
 const SEARCH_BUTTON = 'body > header > div > div.nav-area.nav-top-area.nav-center-area > form > button';
 const TIME_OUT = 15000;
@@ -35,7 +37,7 @@ class MercadoLibreScrapper {
         headless: true
       });
     } catch(e) {
-      // TODO: Here we have to save the log
+      logger.error(`Error opening browser in mercadoLibreScrapper, ${e}`);
       console.error('Sorry, an unexpected error has happened 😞');
     }
   }
@@ -59,7 +61,7 @@ class MercadoLibreScrapper {
       
       return products;
     } catch(e) {
-      // TODO: Here we have to save the log
+      logger.error(`Error executing: runScraping, ${e}`);
       console.error('Sorry, an unexpected error has happened 😞');
     }
   }

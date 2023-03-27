@@ -16,13 +16,14 @@ module.exports = {
                 const HOURS_CONVERTED = await convert.getHour(FROM_CITY, TO_CITY);
                 message.channel.send('🕑 ' + HOURS_CONVERTED);
             } catch(e) {
-                // TODO: Here we have to save the log
+                logger.error(`Error executing: !convert, ${e}`);
                 message.channel.send('Sorry, an unexpected error has happened 😞');
             }
         })();
     },
 };
 
+const logger = require('../Utils/logs');
 const convertHours = require('../Functions/convertHours');
 const FROM_CITY = 'Aguascalientes';
 const TO_CITY = 'Madrid';

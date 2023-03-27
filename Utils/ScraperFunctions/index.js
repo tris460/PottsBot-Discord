@@ -2,7 +2,7 @@
 
 'use strict';
 
-const { Key } = require('puppeteer');
+const logger = require('../../Utils/logs');
 
 class Scraper {
     /**
@@ -23,7 +23,7 @@ class Scraper {
             this.page = await this.browser.newPage();
             await this.page.goto(url);
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error opening a new browser in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -35,7 +35,7 @@ class Scraper {
         try {
             await this.browser.close();
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error closing browser in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -47,7 +47,7 @@ class Scraper {
         try {
             await this.page.screenshot({ path: 'screenshots/image.jpg' });
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error taking screenshot in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -59,7 +59,7 @@ class Scraper {
         try {
             await this.page.waitForSelector(selector);
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error waiting for selector in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -72,7 +72,7 @@ class Scraper {
         try {
             await this.page.click(selector);
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error clicking in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -85,7 +85,7 @@ class Scraper {
         try {
             await this.page.keyboard.press(key);
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error pressing in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -102,7 +102,7 @@ class Scraper {
             await this.page.waitForTimeout(time);
             await this.page.type(id, text);
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error filling input in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -119,7 +119,7 @@ class Scraper {
         try {
             await this.page.pdf(options);
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error getting PDF in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -137,7 +137,7 @@ class Scraper {
             }, selector);
             return textContent;
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error getting text content in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -156,7 +156,7 @@ class Scraper {
             
             return DATA;
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error getting text content by class name in scraper functions, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }

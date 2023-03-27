@@ -25,12 +25,13 @@ module.exports = {
             }
             message.channel.send('Those were the results I found 😊');
           } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error executing: !mlscrap, ${e}`);
             message.channel.send('Sorry, an unexpected error has happened 😞');
           }
         })();
     },
 };
 
+const logger = require('../Utils/logs');
 const MercadoLibreScrapper = require('../Functions/mercadoLibreScraper');
 const PRODUCT = 'Computadora';

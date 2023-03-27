@@ -14,11 +14,12 @@ module.exports = {
             const FORTUNE = getFortune('shellFortune');
             message.channel.send('🐚 ' + FORTUNE);
           } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error executing: !shell, ${e}`);
             message.channel.send('Sorry, an unexpected error has happened 😞');
           }
         })();
     },
 };
 
+const logger = require('../Utils/logs');
 const { getFortune } = require('../Functions/fortune');
