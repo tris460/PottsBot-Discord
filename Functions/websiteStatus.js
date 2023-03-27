@@ -4,6 +4,7 @@
 
 const puppeteer = require('puppeteer');
 const Scraper = require('../Utils/ScraperFunctions/index');
+const logger = require('../Utils/logs');
 
 const URL = 'https://pagespeed.web.dev/';
 const TIME_OUT = 15000;
@@ -38,7 +39,7 @@ class websiteStatus {
         headless: true
       });
     } catch(e) {
-      // TODO: Here we have to save the log
+      logger.error(`Error opening a new browser in websiteStatus, ${e}`);
       console.error('Sorry, an unexpected error has happened 😞');
     }
   }
@@ -59,7 +60,7 @@ class websiteStatus {
       await myPage.getPDF(options);
       await myPage.closeBrowser();
     } catch(e) {
-      // TODO: Here we have to save the log
+      logger.error(`Error executing: getStatus, ${e}`);
       console.error('Sorry, an unexpected error has happened 😞');
     }
   }

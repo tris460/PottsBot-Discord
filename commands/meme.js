@@ -16,11 +16,12 @@ module.exports = {
 
             message.channel.send({ files: [`../PottsBot/assets/memes/${NAME}`]});
           } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error executing: !meme, ${e}`);
             message.channel.send('Sorry, an unexpected error has happened 😞');
           }
         })();
     },
 };
 
+const logger = require('../Utils/logs');
 const { getRandomNumber } = require('../Utils/getRandomNumber');

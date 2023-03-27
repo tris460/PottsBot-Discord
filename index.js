@@ -3,8 +3,11 @@
 'use strict';
 
 require('dotenv').config();
+
 const fs = require('fs');
 const { Client, Collection } = require('discord.js');
+const logger = require('./Utils/logs');
+
 const client = new Client({ intents: [3276799] });
 const prefix = `!`; // Every command must start with it
 
@@ -26,6 +29,7 @@ for (const file of commandFiles) {
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity('Amongus');
+    logger.info('Bot ready, login correct');
 });
 
 /**
@@ -61,12 +65,17 @@ client.on("messageCreate", (message) => {
 
     const command = client.commands.get(commandName);
 
-    if (!command) return;
+    if (!command) {
+        message.channel.send("I don't recognize tha command, you can try !help to get a list of the available commands 😊");
+        logger.info(`Incorrect command: ${message}`);
+        return;
+    }
 
     try {
         command.execute(message, args);
+        logger.info(`Command executed: ${message}`);
     } catch(e) {
-        // TODO: Here we have to save the log
+        logger.error(`Executing command: ${message}. ${e}`);
         message.reply('Sorry, an unexpected error has happened 😞');
     }
 });

@@ -5,6 +5,7 @@
 const puppeteer = require('puppeteer');
 const Scraper = require('../Utils/ScraperFunctions/index');
 const URL = 'https://www.scribbr.es/citar/generador/apa/';
+const logger = require('../Utils/logs');
 
 const URL_INPUT_ID = '#autocite-search'
 const BUSQUEDA_BUTTON_ID = '#top > div.grow > div.container-lg.space-y-12.py-24 > div.space-y-2 > div > div > div.relative.space-y-2\\.5 > div > form > label > div > button.relative.max-w-full.items-center.justify-center.truncate.rounded-md.border.fill-current.font-semibold.transition-colors.inline-flex.text-base.h-10.px-4.justify-around.border-transparent.bg-orange-9.text-white.hover\\:bg-orange-10.hidden.md\\:inline-block';
@@ -32,7 +33,7 @@ class generateAPA {
                 headless: true
             });
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error opening browser in generateAPA, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
@@ -57,7 +58,7 @@ class generateAPA {
 
             return text;
         } catch(e) {
-            // TODO: Here we have to save the log
+            logger.error(`Error executing: getAPA, ${e}`);
             console.error('Sorry, an unexpected error has happened 😞');
         }
     }
