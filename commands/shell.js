@@ -6,6 +6,10 @@ module.exports = {
     name: 'shell',
     description: 'Gives an answer for an specific question. You must ask something to get an answer.',
     execute(message, args) {
+      if (!args[0]) {
+        message.channel.send('Make a question, dumb ass!');
+        return;
+      }
         /**
          * This function gets the fortune (a random text)
          */
