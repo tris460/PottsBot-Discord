@@ -59,7 +59,7 @@ QRCode: 1.5.1 <br>
 
 ## Contributions and contact
 🌷 [Beatriz Martínez](https://github.com/tris460) <br>
-🎮 [Rubén Rodríguez](http://https://github.com/RubsRz "Rubén Rodríguez") <br>
+🎮 [Rubén Rodríguez](http://github.com/RubsRz "Rubén Rodríguez") <br>
 ✒ [Lucía Guzmán](https://github.com/AnaLucyGDL)
 
 Follow us 👉👈 and star this project ⭐
