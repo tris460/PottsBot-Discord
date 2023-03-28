@@ -11,9 +11,9 @@ You can edit the functions described below to your own purposes, this code was d
 or **SSH** `git@github.com:tris460/PottsBot-Discord.git`
 or **GitHub CLI** `gh repo clone tris460/PottsBot-Discord`
 
-2.- Then, intall the necessaty dependences by running: `npm install` <br>
+2.- Then, install the necessaty dependences by running: `npm install` <br>
 3.- After that, you must create your bot, to achieve that, follow the next tutorial from the [Discord Developer Portal](https://discord.com/developers/applications) <br>
-4.- Create your `.env` file in the root project with the structure shown in the `.env.sample` file. <br>
+4.- Create your `.env` file in the root project with the structure show in the `.env.sample` file. <br>
 5.- To execute the bot in your localhost, run: `npm run start`.
 
 ⚠ Never commit or share your token or API keys publicly ⚠
