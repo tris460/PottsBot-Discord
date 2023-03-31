@@ -20,7 +20,7 @@ module.exports = {
                 const webStatus = new websiteStatus();
                 
                 await webStatus.getStatus(urlScan);
-                await message.channel.send({ files: ["../PottsBot-Discord/status.pdf"] })
+                await message.channel.send({ files: ["../PottsBot/status.pdf"] })
                     .then(() => { message.channel.send("It is your status 📊"); })
                     .catch((e) => {
                         logger.error(`Error generating status, ${e}`);

@@ -20,7 +20,7 @@ module.exports = {
         generateQR();
         await generateQR(url, QR_FILE_NAME);
 
-        message.channel.send({ files: [`../PottsBot-Discord/qr.jpg`]});
+        message.channel.send({ files: [`../PottsBot/qr.jpg`]});
         message.channel.send('It is the QR code to the URL 🖥');
       } catch(e) {
         logger.error(`Error executing: !qr, ${e}`);
