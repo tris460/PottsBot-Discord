@@ -6,17 +6,22 @@ module.exports = {
     name: 'mlscrap',
     description: 'Scraps the Mercado Libre page to return the available products',
     execute(message, args) {
+      if (!args[0]) {
+        message.channel.send('Please provide a valid product you want to search.');
+        return;
+      }
+      const product = message.content.slice(4).toString();
         /**
          * This function executes the scraper of Mercado Libre and returns the available products
          */
         (async () => {
           try {
             message.channel.send('Running scrapping...');
-            const mlScrapper = new MercadoLibreScrapper([], PRODUCT);
+            const mlScrapper = new MercadoLibreScrapper([], product);
             const products = await mlScrapper.runScraping();
 
             if(products.length == 0 || products == undefined) {
-              message.channel.send(`Sorry, there is 0 results for your search: ${PRODUCT} 😞`);
+              message.channel.send(`Sorry, there is 0 results for your search: ${product} 😞`);
               return;
             }
 
@@ -34,4 +39,3 @@ module.exports = {
 
 const logger = require('../Utils/logs');
 const MercadoLibreScrapper = require('../Functions/mercadoLibreScraper');
-const PRODUCT = 'Computadora';
